@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Norte da Liderança · Gestão 360° · Silvanio Gois</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        :root {
+            --primary: rgb(39, 98, 141);
+            --primary-light: rgba(39, 98, 141, 0.08);
+            --primary-soft: rgba(39, 98, 141, 0.04);
+            --primary-hover: rgba(39, 98, 141, 0.12);
+            --text-dark: #1e2b37;
+            --text-soft: #2b3f4e;
+            --white: #ffffff;
+            --border-light: #d9e2ec;
+            --shadow-sm: 0 4px 12px rgba(0, 20, 40, 0.03);
+            --shadow-md: 0 12px 28px -8px rgba(0, 20, 40, 0.08);
+            --transition: all 0.25s ease;
+        }
+
+        body {
+            background-color: #f4f8fc;
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 1.2rem 5%;
+            box-shadow: 0 4px 20px rgba(0, 20, 40, 0.25);
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .foto {
+            transition: var(--transition);
+        }
+        .foto:hover {
+            transform: scale(1.02) rotate(1deg);
+        }
+        .foto img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            background-color: #e6f0fa;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+        .foto img:hover {
+            border-color: rgba(255,255,255,0.9);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+        }
+
+        .info {
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .info h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 0.1rem;
+            color: var(--white);
+        }
+
+        .info .subtitulo {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid rgba(255,255,255,0.5);
+            padding-left: 1rem;
+            color: var(--white);
+        }
+
+        .info .contato a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            background-color: rgba(255,255,255,0.15);
+            padding: 0.3rem 1.4rem;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(4px);
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .info .contato a:hover {
+            background-color: var(--white);
+            color: var(--primary);
+            border-color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 14px -6px rgba(0,0,0,0.25);
+        }
+
+        /* MAIN */
+        main {
+            flex: 1;
+            max-width: 1280px;
+            width: 100%;
+            margin: 2.5rem auto;
+            padding: 0 5%;
+        }
+
+        /* todas as seções com hover */
+        section, .carta-pessoal, .glossario, .espaco-anotacoes, .resumo-final, .card-interface, .script-box, .table-wrapper, .badge-cron, .pergunta-desconfortavel {
+            transition: var(--transition);
+        }
+        section:hover, .carta-pessoal:hover, .glossario:hover, .espaco-anotacoes:hover, .resumo-final:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        section {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(39, 98, 141, 0.12);
+        }
+
+        .carta-pessoal {
+            background: linear-gradient(145deg, #ffffff 0%, #f1f7fd 100%);
+            border-radius: 24px;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 2rem;
+            border-left: 8px solid var(--primary);
+            font-style: normal;
+            box-shadow: var(--shadow-sm);
+        }
+        .carta-pessoal p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        .carta-pessoal .assinatura {
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 1rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 600;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.8rem;
+            display: inline-block;
+            transition: var(--transition);
+        }
+        h2:hover {
+            padding-left: 0.8rem;
+            border-bottom-width: 4px;
+        }
+
+        /* ícone sutil com traço (sempre na cor do tema) */
+        h2::before {
+            content: "—";
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 2rem;
+            margin-right: 0.3rem;
+            opacity: 0.7;
+            display: inline-block;
+            transition: var(--transition);
+        }
+        h2:hover::before {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+
+        h3 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 1.8rem 0 1rem;
+            padding-left: 0.75rem;
+            border-left: 6px solid var(--primary);
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f3a57;
+            margin: 1.5rem 0 0.6rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-soft);
+        }
+
+        ul, ol {
+            margin: 1rem 0 1.5rem 1.8rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+            transition: var(--transition);
+        }
+        li:hover {
+            color: var(--primary);
+            transform: translateX(2px);
+        }
+
+        strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .pergunta-desconfortavel {
+            font-weight: 600;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 0.5rem 0 1rem 0;
+            font-size: 1rem;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+        .pergunta-desconfortavel:hover {
+            background: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 4px 10px rgba(39,98,141,0.1);
+        }
+        .pergunta-desconfortavel::before {
+            content: "• ";
+            font-size: 1.4rem;
+            vertical-align: middle;
+            color: var(--primary);
+        }
+
+        /* cartões */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .card-interface {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 1.8rem 1.5rem;
+            border: 1px solid rgba(39, 98, 141, 0.18);
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        .card-interface:hover {
+            border-color: var(--primary);
+            box-shadow: 0 20px 30px -12px rgba(39,98,141,0.2);
+            transform: translateY(-6px) scale(1.01);
+        }
+        .card-interface h4 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+            border-bottom: 2px dotted var(--primary);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .card-interface h4::before {
+            content: "—";
+            font-weight: 700;
+            color: var(--primary);
+            opacity: 0.6;
+        }
+
+        .tag {
+            background-color: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            transition: var(--transition);
+        }
+        .tag:hover {
+            background-color: var(--text-dark);
+            transform: scale(1.02);
+        }
+
+        /* tabela */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 2rem 0 1.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            background: var(--white);
+            transition: var(--transition);
+        }
+        .table-wrapper:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px rgba(39,98,141,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 620px;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            padding: 1rem 1rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        th:hover {
+            background-color: rgba(39,98,141,0.12);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: top;
+            transition: var(--transition);
+        }
+        tr:hover td {
+            background-color: rgba(39,98,141,0.02);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* scripts */
+        .script-box {
+            background: #f0f7ff;
+            border-left: 6px solid var(--primary);
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            margin: 1.8rem 0;
+            box-shadow: inset 0 0 0 1px rgba(39,98,141,0.1);
+            transition: var(--transition);
+        }
+        .script-box:hover {
+            border-left-width: 10px;
+            background: #e6f2ff;
+            box-shadow: 0 10px 25px -10px rgba(39,98,141,0.3);
+        }
+        .script-box .intencao {
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .script-box .intencao::before {
+            content: "— ";
+        }
+
+        /* checklist */
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+        .checklist li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .checklist li::before {
+            content: "—";
+            color: var(--primary);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+            transition: var(--transition);
+        }
+        .checklist li:hover::before {
+            content: "✓";
+            font-size: 1.2rem;
+            left: -2px;
+        }
+
+        .badge-cron {
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem;
+            display: inline-block;
+            margin: 0.5rem 0.5rem 0 0;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .badge-cron:hover {
+            background: var(--white);
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Glossário */
+        .glossario {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(39,98,141,0.2);
+            box-shadow: var(--shadow-sm);
+        }
+        .glossario-item {
+            margin-bottom: 1rem;
+            border-bottom: 1px dashed var(--primary);
+            padding-bottom: 0.8rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .glossario-item:hover {
+            border-bottom-style: solid;
+            padding-left: 0.5rem;
+            background: rgba(39,98,141,0.02);
+        }
+        .glossario-item strong {
+            display: inline-block;
+            min-width: 90px;
+            font-size: 1.05rem;
+        }
+        .glossario-item strong::before {
+            content: "⌲";
+            margin-right: 0.5rem;
+            opacity: 0.5;
+            color: var(--primary);
+        }
+
+        /* Resumo final */
+        .resumo-final {
+            background: linear-gradient(145deg, #ffffff 0%, #f2f9ff 100%);
+            border: 2px solid var(--primary);
+            border-radius: 32px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .resumo-final p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 1rem auto;
+        }
+
+        .espaco-anotacoes {
+            background: #fff9e0;
+            border: 2px dashed var(--primary);
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin-top: 2rem;
+        }
+        .espaco-anotacoes p {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+        .linha-anotacao {
+            height: 2.5rem;
+            border-bottom: 2px solid rgba(39,98,141,0.3);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+        .linha-anotacao:hover {
+            border-bottom-color: var(--primary);
+            height: 3rem;
+        }
+
+        /* dica extra */
+        .dica-pessoal {
+            background: var(--primary-soft);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0 1rem;
+            border-left: 8px solid var(--primary);
+            font-style: italic;
+            transition: var(--transition);
+        }
+        .dica-pessoal:hover {
+            background: var(--primary-light);
+            border-left-width: 10px;
+        }
+        .dica-pessoal p:last-child {
+            margin-bottom: 0;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5rem 5%;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+        }
+        footer p {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+        footer a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 2px dotted rgba(255,255,255,0.6);
+            margin-left: 0.8rem;
+            transition: var(--transition);
+        }
+        footer a:hover {
+            border-bottom: 2px solid var(--white);
+            letter-spacing: 0.3px;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary);
+            color: var(--white);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 300;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            opacity: 0.8;
+            transition: var(--transition);
+            z-index: 100;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-5px) scale(1.1);
+            background-color: var(--text-dark);
+        }
+        .back-to-top span {
+            display: block;
+            line-height: 1;
+        }
+
+        @media (max-width: 600px) {
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .info .subtitulo {
+                border-left: none;
+                padding-left: 0;
+                border-top: 2px solid rgba(255,255,255,0.3);
+                padding-top: 0.8rem;
+            }
+            .foto img {
+                width: 120px;
+                height: 120px;
+            }
+            h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header id="topo">
+        <div class="header-container">
+            <div class="foto">
+                <img src="Executivo_Silvanio_Gestor.PNG" alt="Silvanio Gois" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%23e6f0fa\' stroke=\'%2327628d\' stroke-width=\'3\'/%3E%3Ctext x=\'50\' y=\'70\' font-size=\'44\' text-anchor=\'middle\' fill=\'%2327628d\' font-family=\'Arial\'%3E👤%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="info">
+                <h1>Silvanio Gois</h1>
+                <p class="subtitulo">Guia de Gestão 360° · Ferramentas práticas para integrar clientes e fornecedores internos e externos</p>
+                <p class="contato">
+                    <a href="https://wa.me/5513988301094" target="_blank" rel="noopener noreferrer">
+                        Contato
+                    </a>
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- CARTA AO GESTOR (tom pessoal) -->
+        <div class="carta-pessoal">
+            <p> <strong>Caro gestor, colega de jornada,</strong></p>
+            <p>Este guia nasceu da minha experiência na linha de frente — e de alguns tropeços que me ensinaram mais do que acertos. Percebi que a maioria dos gargalos não está na capacidade técnica da equipe, mas nos 'muros invisíveis' entre departamentos. O que apresento aqui não é teoria, mas um norte prático que usei para transformar conflitos em parcerias. Use-o, rabisque-o, adapte-o ao seu jeito. E, acima de tudo, lembre-se: a gestão se faz com conversa franca e escuta generosa.</p>
+            <p class="assinatura">— SG</p>
+        </div>
+
+        <!-- O X DA QUESTÃO -->
+        <section>
+            <h2>O X da Questão: Por que a Gestão 360°?</h2>
+            <p><em>📍 Quando usar: na primeira reunião com a equipe, ou sempre que alguém questionar "por que temos que nos preocupar com outras áreas?".</em></p>
+            <p><strong>Se o seu time interno não se entende, o seu cliente externo sente o reflexo no bolso.</strong> Este guia parte de um princípio simples: cuidar de quem cuida do cliente. A qualidade percebida pelo mercado é o reflexo direto da eficiência das conexões internas. Em serviços, produção e consumo acontecem juntos – o que torna a integração entre áreas o fator crítico de sucesso.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.8rem; background: var(--primary-light); padding: 1.5rem; border-radius: 30px; transition: var(--transition);">
+                <div style="flex:1;"><span style="font-weight:700;">Qualidade interna</span> → engajamento</div>
+                <div style="flex:1;"><span style="font-weight:700;">Engajamento</span> → produtividade</div>
+                <div style="flex:1;"><span style="font-weight:700;">Produtividade</span> → valor externo</div>
+                <div style="flex:1;"><span style="font-weight:700;">Valor</span> → fidelização e lucro</div>
+            </div>
+        </section>
+
+        <!-- AS QUATRO INTERFACES -->
+        <section>
+            <h2>As quatro interfaces 360°</h2>
+            <p><em>📍 Quando usar: para apresentar o conceito ao time e para cada área se enxergar no papel de "fornecedor" ou "cliente".</em></p>
+            <div class="cards-grid">
+                <div class="card-interface">
+                    <span class="tag">FORNECEDOR INTERNO</span>
+                    <h4>Back-office · Apoio</h4>
+                    <p><strong>Papel:</strong> entregar insumo perfeito (dados, processos).<br>
+                    <strong>Ferramenta:</strong> OLA.<br>
+                    <em>“O próximo é seu cliente; não entregue problemas.”</em></p>
+                    <div class="pergunta-desconfortavel">Sua equipe entrega o que promete ou empurra problemas para frente?</div>
+                </div>
+                <div class="card-interface">
+                    <span class="tag">CLIENTE INTERNO</span>
+                    <h4>Equipes · Departamentos</h4>
+                    <p><strong>Papel:</strong> executar com excelência.<br>
+                    <strong>Cultura:</strong> feedback 360°, eNPS.<br>
+                    <em>“Trate o colega como o maior cliente.”</em></p>
+                    <div class="pergunta-desconfortavel">Você trata o colega com a paciência que trata o cliente? Ou acha que 'interno' pode esperar?</div>
+                </div>
+                <div class="card-interface">
+                    <span class="tag">CLIENTE EXTERNO</span>
+                    <h4>Consumidor final</h4>
+                    <p><strong>Papel:</strong> destino do valor.<br>
+                    <strong>Estratégia:</strong> Customer Success, NPS.<br>
+                    <em>“Antecipe a dor, entregue a cura.”</em></p>
+                    <div class="pergunta-desconfortavel">Você sabe exatamente qual é a maior dor do seu cliente hoje?</div>
+                </div>
+                <div class="card-interface">
+                    <span class="tag">FORNECEDOR EXTERNO</span>
+                    <h4>Parceiros · Tecnologia</h4>
+                    <p><strong>Papel:</strong> extensão da capacidade.<br>
+                    <strong>Governança:</strong> SRM, compliance, ESG.<br>
+                    <em>“Relação ganha-ganha, não só custo.”</em></p>
+                    <div class="pergunta-desconfortavel">Você ainda escolhe parceiro só por preço, ou por confiança?</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MATRIZ DE SLAs -->
+        <section>
+            <h2>Matriz de SLAs / OLAs</h2>
+            <p><em>📍 Quando usar: em reuniões de alinhamento entre áreas, para definir prazos e critérios de qualidade.</em></p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr><th>Processo</th><th>De → Para</th><th>Prazo (SLA/OLA)</th><th>Critério de qualidade</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Análise de crédito</td><td>Vendas → Financeiro</td><td>4h úteis</td><td>Dados completos do cliente</td></tr>
+                        <tr><td>Briefing de início</td><td>Vendas → Operação</td><td>24h úteis</td><td>Escopo e expectativas alinhadas</td></tr>
+                        <tr><td>Suporte ao cliente</td><td>Operação → Cliente Externo</td><td>Conforme contrato</td><td>Resposta humana e resolutiva</td></tr>
+                        <tr><td>Update de status</td><td>Operação → Vendas/CS</td><td>Semanal (sexta)</td><td>Relatório de progresso claro</td></tr>
+                        <tr><td>Requisição de insumos</td><td>Operação → Financeiro</td><td>3 dias antecedência</td><td>NF / centro de custo definido</td></tr>
+                        <tr><td>Faturamento/NF</td><td>Financeiro → Cliente Externo</td><td>24h pós-aviso</td><td>NF com boleto e descrição</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><strong>Regra de ouro:</strong> SLA externo exige OLA interno mais curto. Input inválido não inicia prazo.</p>
+        </section>
+
+        <!-- PROTOCOLO DE RESPOSTA A FALHAS (PRF) - VERSÃO COMPLETA -->
+        <section>
+            <h2> Protocolo de Resposta a Falhas (PRF)</h2>
+            <p><em>📍 Quando usar: sempre que um processo quebrar, um prazo interno for perdido ou um cliente for afetado. O objetivo não é apontar culpados, mas resolver rápido e evitar que se repita. Use este roteiro em reuniões rápidas (de 15 a 30 minutos) com os envolvidos.</em></p>
+            
+            <div style="background: var(--primary-soft); border-radius: 24px; padding: 1.8rem; margin: 1.5rem 0;">
+                <h4 style="margin-top: 0; color: var(--primary);">⚙️ Os 4 passos obrigatórios (faça nesta ordem):</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0;">
+                    <span class="badge-cron">1. Contenção (0–2h)</span>
+                    <span class="badge-cron">2. Triagem</span>
+                    <span class="badge-cron">3. 5 Porquês</span>
+                    <span class="badge-cron">4. Over-delivery</span>
+                </div>
+                
+                <div style="display: grid; gap: 1.5rem;">
+                    <div style="background: white; border-radius: 20px; padding: 1.2rem 1.5rem;">
+                        <strong style="color: var(--primary); font-size: 1.2rem;">📌 Passo 1 – Contenção (0 a 2 horas)</strong>
+                        <p style="margin: 0.5rem 0 0;"><strong>O que é:</strong> Ações emergenciais para estancar o dano e proteger o cliente/área afetada.</p>
+                        <p><strong>Como fazer:</strong> Comunique imediatamente o ocorrido a quem precisa saber. Se for com cliente, ligue, não mande e-mail. Use um dos scripts abaixo.</p>
+                        <p><strong>Exemplo:</strong> Financeiro não pagou fornecedor. Líder liga para o fornecedor, assume erro e informa que pagamento será feito em 2h.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 20px; padding: 1.2rem 1.5rem;">
+                        <strong style="color: var(--primary); font-size: 1.2rem;">📌 Passo 2 – Triagem (até 4 horas)</strong>
+                        <p style="margin: 0.5rem 0 0;"><strong>O que é:</strong> Classificar a gravidade do problema para definir o nível de resposta.</p>
+                        <p><strong>Como fazer:</strong> Reúna informações mínimas (o que aconteceu, quem foi afetado, impacto). Use as cores abaixo como guia.</p>
+                        <p><strong>Exemplo:</strong> Descobrir se foi erro pontual de digitação (baixo) ou se o sistema de pagamentos caiu (crítico).</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 20px; padding: 1.2rem 1.5rem;">
+                        <strong style="color: var(--primary); font-size: 1.2rem;">📌 Passo 3 – 5 Porquês (até 48 horas)</strong>
+                        <p style="margin: 0.5rem 0 0;"><strong>O que é:</strong> Investigação da causa raiz, sem culpa.</p>
+                        <p><strong>Como fazer:</strong> Reúna os envolvidos diretos por 15-20 minutos. Pergunte "por que?" até chegar à falha no processo.</p>
+                        <p><strong>Exemplo:</strong> Por que atrasou? (Esqueci). Por que esqueceu? (Não havia alerta). Causa raiz: falha no sistema, não na pessoa.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 20px; padding: 1.2rem 1.5rem;">
+                        <strong style="color: var(--primary); font-size: 1.2rem;">📌 Passo 4 – Over-delivery (após resolver)</strong>
+                        <p style="margin: 0.5rem 0 0;"><strong>O que é:</strong> Ações para reconstruir a confiança, indo além do esperado.</p>
+                        <p><strong>Como fazer:</strong> Ofereça algo a mais para quem foi afetado (cliente externo ou interno). Pode ser um brinde, desconto, ou uma ajuda extra.</p>
+                        <p><strong>Exemplo:</strong> Além de pagar, o financeiro envia um plano de ação para não repetir o erro e oferece prioridade nos próximos pagamentos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem;">🚦 Níveis de Gravidade (use para a Triagem):</h3>
+            <div style="display: grid; gap: 1.2rem;">
+                <div style="background: #e6f7e6; border-left: 8px solid #2e7d32; padding: 1rem 1.5rem; border-radius: 16px; transition: var(--transition);">
+                    <span style="font-weight: 800; font-size: 1.4rem;">🔹 Baixo</span>
+                    <p style="margin: 0.5rem 0 0;"><strong>Quando ocorre:</strong> Atraso interno que não afeta o cliente final. Ex: relatório semanal com 3h de atraso.</p>
+                    <p><strong>O que fazer:</strong> Apenas avise a área afetada com transparência. Use o script de "aviso transparente".</p>
+                </div>
+                
+                <div style="background: #fff4e5; border-left: 8px solid #ed6c02; padding: 1rem 1.5rem; border-radius: 16px; transition: var(--transition);">
+                    <span style="font-weight: 800; font-size: 1.4rem;">🔸 Médio</span>
+                    <p style="margin: 0.5rem 0 0;"><strong>Quando ocorre:</strong> O cliente externo foi afetado, mas o problema já está contido. Ex: um cliente reclamou do prazo.</p>
+                    <p><strong>O que fazer:</strong> Aplique o script de "desculpa + solução + extra". Peça desculpas, apresente nova data e ofereça um benefício.</p>
+                </div>
+                
+                <div style="background: #ffebee; border-left: 8px solid #c62828; padding: 1rem 1.5rem; border-radius: 16px; transition: var(--transition);">
+                    <span style="font-weight: 800; font-size: 1.4rem;">🔻 Crítico</span>
+                    <p style="margin: 0.5rem 0 0;"><strong>Quando ocorre:</strong> O serviço parou, vários clientes foram afetados. Ex: sistema de vendas fora do ar.</p>
+                    <p><strong>O que fazer:</strong> Ative a força-tarefa imediatamente. Líder assume comunicação e dá status de hora em hora. Use o script de "líder assume".</p>
+                </div>
+            </div>
+
+            <div class="dica-pessoal">
+                <p><strong>💡 Dica:</strong> Imprima esse protocolo e deixe na sala. Na primeira falha, siga os passos em voz alta. Na terceira vez, já será automático.</p>
+            </div>
+        </section>
+
+        <!-- SCRIPTS DE COMUNICAÇÃO -->
+        <section>
+            <h2>Scripts de comunicação</h2>
+            <p><em>📍 Quando usar: na hora de comunicar uma falha, seja para equipe interna ou cliente. Adapte as palavras ao seu estilo, mas mantenha a intenção.</em></p>
+            <div class="script-box"><div class="intencao">Aviso transparente (para falhas baixas)</div><p>“Olá [colega/área]. Identificamos um imprevisto técnico... entrega muda para amanhã 9h. Já estou ajustando para não impactar vocês.”</p></div>
+            <div class="script-box"><div class="intencao">Desculpa + solução + extra (para falhas médias)</div><p>“Olá [cliente]. Pedimos desculpas pelo transtorno. A nova previsão é [data]. Para compensar, vou incluir [ação extra] sem custo. Conte conosco.”</p></div>
+            <div class="script-box"><div class="intencao">Líder assume (para falhas críticas)</div><p>“Prezado [cliente], sou [nome], responsável pela área. Assumo o erro e já coloquei uma força-tarefa atuando. Voltarei em 60 min com um plano.”</p></div>
+        </section>
+
+        <!-- A CONVERSA INICIAL -->
+        <section>
+            <h2>A Conversa Inicial (com a equipe)</h2>
+            <p><em>📍 Quando usar: no lançamento do guia, ou quando um novo membro entra no time.</em></p>
+            <div style="background: var(--primary-light); border-radius: 24px; padding: 1.5rem; transition: var(--transition);">
+                <p style="font-weight: 600;">🗣️ "Pessoal, quero melhorar nosso ambiente. Criei um guia simples para nos relacionarmos com outras áreas. Vamos discutir juntos esses prazos? Quero ouvir de vocês o que está travando o fluxo."</p>
+            </div>
+            <p style="margin-top: 1rem;"><em>Essa abertura já resolve metade dos conflitos. O time precisa sentir que não é mais um "manual vindo de cima".</em></p>
+        </section>
+
+        <!-- CHECKLIST SEMANAL -->
+        <section>
+            <h2>Raio-X da Sexta-Feira</h2>
+            <p><em>📍 Quando usar: toda sexta-feira, em reunião de 15 minutos com a liderança imediata.</em></p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem;">
+                <ul class="checklist"><li>Houve quebra de OLA?</li><li>Insumos com qualidade?</li><li>SLAs externos cumpridos?</li><li>eNPS estável?</li><li>NPS na meta?</li></ul>
+                <ul class="checklist"><li>Fornecedores cumpriram?</li><li>Dashboard atualizado?</li><li>Erros viraram melhoria?</li><li>Comunicação ágil?</li><li>Gargalo tecnológico?</li></ul>
+            </div>
+            <p><strong>Régua pessoal:</strong> abaixo de 7 'sim', reserve 30min na segunda para tomar um café com o time e entender o que não está fluindo.</p>
+        </section>
+
+        <!-- PLANO 90 DIAS -->
+        <section>
+            <h2>Plano de Implementação (90 dias)</h2>
+            <p><em>📍 Quando usar: para estruturar a adoção do guia, mês a mês.</em></p>
+            <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+                <div style="flex:1; background: var(--primary-light); border-radius: 20px; padding: 1.5rem; transition: var(--transition);"><span class="badge-cron">Mês 1 Diagnóstico</span><p>Mapear 5 gargalos, entrevistar stakeholders. Já fiz isso e descobri que o maior problema era um formulário mal desenhado.</p></div>
+                <div style="flex:1; background: var(--primary-light); border-radius: 20px; padding: 1.5rem; transition: var(--transition);"><span class="badge-cron">Mês 2 Padronização</span><p>Instituir SLAs/OLAs, treinar equipes. O segredo é começar simples: 3 prazos críticos apenas.</p></div>
+                <div style="flex:1; background: var(--primary-light); border-radius: 20px; padding: 1.5rem; transition: var(--transition);"><span class="badge-cron">Mês 3 Operação</span><p>Auditoria semanal, ajustes, consolidar cultura. Celebre as pequenas vitórias.</p></div>
+            </div>
+        </section>
+
+        <!-- GLOSSÁRIO -->
+        <section class="glossario">
+            <h2 style="border-bottom-color: var(--primary); color: var(--primary);"> Glossário de termos e acrônimos</h2>
+            <p><em>📍 Quando usar: sempre que alguém novo entrar no time ou quando aparecer uma sigla que você não lembra.</em></p>
+            <div class="glossario-item"><strong>SLA</strong> Service Level Agreement – acordo de nível de serviço com o cliente externo.</div>
+            <div class="glossario-item"><strong>OLA</strong> Operational Level Agreement – acordo entre áreas internas para suportar o SLA.</div>
+            <div class="glossario-item"><strong>eNPS</strong> Employee Net Promoter Score – lealdade e satisfação dos colaboradores.</div>
+            <div class="glossario-item"><strong>NPS</strong> Net Promoter Score – satisfação e lealdade do cliente externo.</div>
+            <div class="glossario-item"><strong>SRM</strong> Supplier Relationship Management – gestão de relacionamento com fornecedores.</div>
+            <div class="glossario-item"><strong>ESG</strong> Environmental, Social and Governance – práticas ambientais, sociais e de governança.</div>
+            <div class="glossario-item"><strong>PRF</strong> Protocolo de Resposta a Falhas – fluxo para lidar com erros.</div>
+            <div class="glossario-item"><strong>MTTR</strong> Mean Time To Recovery – tempo médio para recuperação de falhas.</div>
+        </section>
+
+        <!-- RESUMO FINAL -->
+        <section class="resumo-final">
+            <h2 style="border-bottom-color: var(--primary);"> Por que este guia funciona</h2>
+            <p>Mais do que um manual, este é um <strong>acordo de convivência organizacional</strong>. Quando cada área entende seu papel como fornecedor ou cliente interno, os conflitos diminuem e a eficiência aumenta. A eficácia está na simplicidade: prazos claros, comunicação humanizada e um olhar sistêmico.</p>
+            <p>Organizações que aplicam a gestão 360° reduzem retrabalho em até 40% e aumentam a satisfação de clientes e colaboradores. Use este guia como ponto de partida para uma cultura de parceria e resultados.</p>
+            <p style="font-weight: 600; margin-top: 1.5rem;">— A gestão começa onde o diálogo não termina.</p>
+        </section>
+
+        <!-- ESPAÇO PARA ANOTAÇÕES -->
+        <div class="espaco-anotacoes">
+            <p> Meu compromisso esta semana (escreva à mão, faz diferença):</p>
+            <div class="linha-anotacao"></div>
+            <div class="linha-anotacao"></div>
+            <div class="linha-anotacao"></div>
+            <p style="font-size: 0.9rem;">Ex: "Agendar conversa com o financeiro sobre os prazos de reembolso."</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Silvanio Gois - Todos os direitos reservados | <a href="https://www.silvaniogois.com.br/" target="_blank">ir ao Site</a></p>
+    </footer>
+
+    <a href="#topo" class="back-to-top" title="Voltar ao topo"><span>↑</span></a>
+</body> 
+</html>
